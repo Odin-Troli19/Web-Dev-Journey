@@ -34,3 +34,39 @@ Creative problem-solving
 
 View your website
 Open it in any browser and start exploring! Try finding all the Easter eggs for extra fun! 🚀
+
+How to Open?
+
+To open the website, you have a few options:
+Option 1: Download and Open (Easiest)
+
+Click on the link I provided: View your website
+This should download the file to your computer
+Find the downloaded file (usually in your Downloads folder)
+Double-click the web-dev-showcase.html file
+It will open in your default web browser! 🎉
+
+Option 2: Direct Browser Open
+
+Open any web browser (Chrome, Firefox, Edge, Safari, etc.)
+Press Ctrl + O (Windows/Linux) or Cmd + O (Mac)
+Navigate to where you saved the file
+Select web-dev-showcase.html and click Open
+
+Option 3: Drag and Drop
+
+Find the web-dev-showcase.html file on your computer
+Drag it into an open browser window
+Drop it - and voilà! ✨
+
+
+Once it's open, try these Easter eggs:
+
+🎮 Type the Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A
+👆 Triple-click the first blue heading
+🖱️ Move your mouse around to see cursor trails
+📜 Scroll all the way to the bottom
+🔍 Open the browser console (F12) for a surprise
+🎯 Click on the timeline items and project cards
+
+Have fun exploring! 🚀
