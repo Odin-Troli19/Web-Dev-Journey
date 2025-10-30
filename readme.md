@@ -70,3 +70,110 @@ Once it's open, try these Easter eggs:
 🎯 Click on the timeline items and project cards
 
 Have fun exploring! 🚀
+
+######################### 4th push (version 2.0) ############################
+🚀 NEW FEATURES ADDED:
+1. Theme Switcher (Top right)
+
+☀️ Light Mode
+🌙 Dark Mode
+🟩 Matrix Mode (with animated green rain!)
+
+2. Live Code Playground
+
+Write HTML code and see it execute in real-time
+Interactive editor with live preview
+
+3. Typing Speed Game ⌨️
+
+Test your typing speed (WPM)
+Track accuracy in real-time
+60-second challenge
+Unlock badge for 60+ WPM!
+
+4. Interactive Quiz 🧠
+
+5 Web Development questions
+Score tracking
+Get 80%+ to unlock a badge!
+
+5. Terminal Simulator 💻
+Commands available:
+
+help - Show all commands
+skills - List skills
+projects - Show projects
+joke - Developer jokes!
+matrix - Enter Matrix mode
+clear - Clear terminal
+credits - Show credits
+
+6. Matrix Rain Effect 🟩
+
+Full-screen Matrix-style animation
+Activate via Matrix theme or terminal
+
+7. Animated Stats Counter
+
+Real-time counting animation
+Shows projects, hours, technologies, coffee cups!
+
+8. Badge/Achievement System 🏆
+
+12 total badges (8 unlocked, 4 secret)
+Secret badges unlock through:
+
+Konami Code
+High quiz score
+Fast typing
+Matrix mode
+
+
+
+9. Advanced Interactions:
+
+🔊 Sound toggle
+🎨 Toast notifications
+✨ Floating particles background
+🎯 Loading screen animation
+💫 Enhanced cursor trails
+🎨 Double-click color change
+🌈 3D CSS transformations
+🎆 Enhanced confetti effects
+
+10. Easter Eggs (20 Total!):
+
+Konami Code (↑↑↓↓←→←→BA)
+Console messages
+Triple-click section titles
+Scroll to bottom
+Matrix mode activation
+Terminal commands
+Quiz completion
+Code playground usage
+Double-click anywhere
+Theme switching
+And more hidden surprises!
+
+🎮 How to Use:
+
+Download the file from the link below
+Open in any web browser
+Explore all the interactive features
+Find all 20 Easter eggs!
+Play the typing game and quiz
+Try the terminal commands
+Switch themes to see different styles
+
+View your enhanced website
+💡 Pro Tips:
+
+Try typing the Konami Code anywhere on the page
+Open browser console (F12) for extra commands
+Try confetti() or showToast("message") in console
+Complete the quiz with 80%+ score
+Type 60+ WPM in the typing game
+Double-click anywhere for a surprise
+Explore the terminal with the help command
+
+This portfolio showcases EVERYTHING a web dev student should know and is way more creative than anything your classmates will have! 🌟
