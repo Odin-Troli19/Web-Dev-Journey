@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Dev Odyssey 🚀 - Enhanced Edition</title>
+    <title>🚀 Ultimate Web Dev Portfolio - Master Edition</title>
     <style>
         * {
             margin: 0;
@@ -41,12 +41,57 @@
             --bg-gradient-end: #000000;
         }
 
+        [data-theme="neon"] {
+            --primary: #ff00ff;
+            --secondary: #00ffff;
+            --dark: #ffffff;
+            --light: #000000;
+            --accent: #ffff00;
+            --bg-gradient-start: #1a0033;
+            --bg-gradient-end: #000033;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             color: var(--dark);
             overflow-x: hidden;
             transition: all 0.3s ease;
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            position: fixed;
+            top: 150px;
+            left: 20px;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.2);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         /* Theme Switcher */
@@ -85,12 +130,18 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         }
 
-        /* Sound Toggle */
-        .sound-toggle {
+        /* Sound and Settings Toggle */
+        .controls {
             position: fixed;
             top: 80px;
             right: 20px;
             z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .control-btn {
             width: 50px;
             height: 50px;
             background: rgba(255, 255, 255, 0.2);
@@ -102,8 +153,24 @@
             transition: all 0.3s ease;
         }
 
-        .sound-toggle:hover {
+        .control-btn:hover {
             transform: scale(1.1);
+        }
+
+        /* Live Clock */
+        .live-clock {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         /* Cursor Trail Effect */
@@ -188,6 +255,47 @@
             0%, 100% { opacity: 0; }
             50% { opacity: 1; }
         }
+
+        /* 3D Rotating Cube */
+        .cube-container {
+            perspective: 1000px;
+            margin: 30px auto;
+            width: 200px;
+            height: 200px;
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 10s infinite linear;
+        }
+
+        @keyframes rotateCube {
+            from { transform: rotateX(0deg) rotateY(0deg); }
+            to { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background: rgba(99, 102, 241, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .cube-face.front  { transform: rotateY(0deg) translateZ(100px); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(100px); }
+        .cube-face.right  { transform: rotateY(90deg) translateZ(100px); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(100px); }
+        .cube-face.top    { transform: rotateX(90deg) translateZ(100px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
 
         .hero h1 {
             font-size: 4rem;
@@ -288,6 +396,15 @@
         .stat-card {
             text-align: center;
             padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .stat-number {
@@ -302,11 +419,10 @@
             opacity: 0.9;
         }
 
-        /* Timeline Section */
-        .timeline-section {
-            background: var(--light);
+        /* Section Styles */
+        .section {
             padding: 80px 20px;
-            position: relative;
+            min-height: 50vh;
         }
 
         .container {
@@ -319,6 +435,11 @@
             font-size: 3rem;
             margin-bottom: 60px;
             color: var(--primary);
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            background: var(--light);
         }
 
         .timeline {
@@ -415,7 +536,6 @@
         .skills-section {
             background: var(--dark);
             color: white;
-            padding: 80px 20px;
         }
 
         .skills-grid {
@@ -497,59 +617,340 @@
             100% { transform: translateX(100%); }
         }
 
-        /* Interactive Code Demo */
-        .code-demo-section {
-            background: #0d1117;
-            color: #c9d1d9;
-            padding: 80px 20px;
+        /* Games Section */
+        .games-section {
+            background: var(--light);
         }
 
-        .code-editor {
-            background: #161b22;
-            border-radius: 10px;
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .game-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .game-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .game-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .game-btn {
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .game-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        /* Calculator */
+        .calculator {
+            background: #2d2d2d;
             padding: 20px;
-            margin: 20px 0;
-            font-family: 'Courier New', monospace;
+            border-radius: 15px;
+            max-width: 300px;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .calc-display {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: right;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            min-height: 60px;
+            word-wrap: break-word;
+        }
+
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calc-btn {
+            padding: 20px;
+            background: #3a3a3a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .calc-btn:hover {
+            background: #4a4a4a;
+            transform: scale(1.05);
+        }
+
+        .calc-btn.operator {
+            background: var(--primary);
+        }
+
+        .calc-btn.equals {
+            background: var(--accent);
+            grid-column: span 2;
+        }
+
+        /* Tic Tac Toe */
+        .tictactoe-board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 10px;
+            margin: 20px auto;
+            justify-content: center;
+        }
+
+        .ttt-cell {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 10px;
+            font-size: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .ttt-cell:hover {
+            background: rgba(99, 102, 241, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* Memory Game */
+        .memory-board {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            gap: 10px;
+            margin: 20px auto;
+            justify-content: center;
+        }
+
+        .memory-card {
+            width: 100px;
+            height: 100px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
+            transform-style: preserve-3d;
         }
 
-        .code-editor::before {
-            content: '';
+        .memory-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.matched {
+            background: var(--accent);
+            pointer-events: none;
+        }
+
+        .memory-card-front,
+        .memory-card-back {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 30px;
-            background: #21262d;
-            border-bottom: 1px solid #30363d;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
         }
 
-        .code-editor-content {
-            margin-top: 30px;
+        .memory-card-back {
+            transform: rotateY(180deg);
+            background: white;
         }
 
-        .code-line {
-            padding: 5px 0;
-            animation: typeWriter 0.5s steps(40) forwards;
-            opacity: 0;
+        /* Snake Game */
+        .snake-canvas {
+            background: #1a1a1a;
+            border: 3px solid var(--primary);
+            border-radius: 10px;
+            display: block;
+            margin: 20px auto;
         }
 
-        @keyframes typeWriter {
+        .snake-score {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: var(--accent);
+        }
+
+        /* Drawing Canvas */
+        .drawing-section {
+            background: var(--light);
+        }
+
+        .drawing-canvas {
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 10px;
+            cursor: crosshair;
+            display: block;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .drawing-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .color-picker {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .color-picker:hover {
+            transform: scale(1.2);
+        }
+
+        .brush-size {
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        /* Chatbot */
+        .chatbot-section {
+            background: var(--dark);
+            color: white;
+        }
+
+        .chatbot-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .chat-message {
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 15px;
+            max-width: 80%;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
             to {
+                transform: translateX(0);
                 opacity: 1;
             }
+        }
+
+        .chat-message.user {
+            background: var(--primary);
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .chat-message.bot {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-input-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 15px;
+            border-radius: 25px;
+            border: 2px solid var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .chat-send {
+            padding: 15px 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .chat-send:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
         }
 
         /* Code Playground */
         .playground-section {
             background: var(--light);
-            padding: 80px 20px;
         }
 
         .playground-container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
@@ -594,52 +995,9 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Typing Speed Game */
-        .typing-game-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 80px 20px;
-            color: white;
-        }
-
-        .typing-game {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-        }
-
-        .typing-text {
-            font-size: 1.5rem;
-            line-height: 2;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-        }
-
-        .typing-input {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.2rem;
-            border-radius: 10px;
-            border: 2px solid var(--accent);
-            background: rgba(255, 255, 255, 0.9);
-            font-family: 'Courier New', monospace;
-        }
-
-        .typing-stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            font-size: 1.2rem;
-        }
-
         /* Quiz Section */
         .quiz-section {
             background: var(--light);
-            padding: 80px 20px;
         }
 
         .quiz-container {
@@ -689,88 +1047,9 @@
             border-color: #ef4444;
         }
 
-        .quiz-score {
-            text-align: center;
-            font-size: 2rem;
-            margin-top: 20px;
-            color: var(--accent);
-        }
-
-        /* Terminal Section */
-        .terminal-section {
-            background: #000;
-            color: #00ff00;
-            padding: 80px 20px;
-            font-family: 'Courier New', monospace;
-        }
-
-        .terminal {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #0a0a0a;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 50px rgba(0, 255, 0, 0.3);
-        }
-
-        .terminal-header {
-            background: #1a1a1a;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .terminal-btn {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .terminal-btn.red { background: #ff5f56; }
-        .terminal-btn.yellow { background: #ffbd2e; }
-        .terminal-btn.green { background: #27c93f; }
-
-        .terminal-body {
-            padding: 20px;
-            min-height: 400px;
-        }
-
-        .terminal-line {
-            margin: 10px 0;
-        }
-
-        .terminal-input {
-            background: transparent;
-            border: none;
-            color: #00ff00;
-            font-family: 'Courier New', monospace;
-            font-size: 16px;
-            outline: none;
-            width: calc(100% - 30px);
-        }
-
-        .terminal-prompt {
-            color: #00ff00;
-        }
-
-        .terminal-cursor {
-            display: inline-block;
-            width: 8px;
-            height: 16px;
-            background: #00ff00;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
         /* Projects Section */
         .projects-section {
             background: var(--dark);
-            padding: 80px 20px;
             color: white;
         }
 
@@ -796,22 +1075,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover::before {
-            opacity: 0.1;
-        }
-
         .project-image {
             width: 100%;
             height: 200px;
@@ -824,11 +1087,6 @@
 
         .project-content {
             padding: 20px;
-        }
-
-        .project-content h3 {
-            color: var(--accent);
-            margin-bottom: 10px;
         }
 
         .project-tags {
@@ -849,7 +1107,6 @@
         .achievements-section {
             background: var(--light);
             color: var(--dark);
-            padding: 80px 20px;
             text-align: center;
         }
 
@@ -903,6 +1160,42 @@
             opacity: 1;
         }
 
+        /* Progress Tracker */
+        .progress-tracker {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .progress-item {
+            margin: 20px 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .progress-bar-container {
+            background: #e5e7eb;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            transition: width 1s ease;
+            width: 0;
+        }
+
         /* Matrix Rain Effect */
         .matrix-canvas {
             position: fixed;
@@ -918,80 +1211,6 @@
 
         .matrix-canvas.active {
             opacity: 0.3;
-        }
-
-        /* Music Visualizer */
-        .visualizer-section {
-            background: #000;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .visualizer-canvas {
-            width: 100%;
-            max-width: 800px;
-            height: 300px;
-            background: #0a0a0a;
-            border-radius: 20px;
-            margin: 20px auto;
-            box-shadow: 0 0 50px rgba(99, 102, 241, 0.5);
-        }
-
-        /* Easter Egg Section */
-        .easter-egg-section {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .konami-code-hint {
-            font-size: 1.2rem;
-            margin: 20px 0;
-            opacity: 0.7;
-        }
-
-        .secret-unlock {
-            display: none;
-            animation: fadeInScale 1s ease;
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Footer */
-        footer {
-            background: #0a0a0a;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 20px 0;
-            font-size: 2rem;
-        }
-
-        .footer-links a {
-            color: white;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-            transform: scale(1.2) rotate(15deg);
         }
 
         /* Modal */
@@ -1013,7 +1232,7 @@
             background: white;
             padding: 40px;
             border-radius: 20px;
-            max-width: 600px;
+            max-width: 800px;
             max-height: 80vh;
             overflow-y: auto;
             animation: modalSlideIn 0.5s ease;
@@ -1046,7 +1265,7 @@
             transform: rotate(90deg);
         }
 
-        /* Notification Toast */
+        /* Toast Notification */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -1106,6 +1325,49 @@
             font-size: 1.5rem;
         }
 
+        .loading-progress {
+            width: 300px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .loading-progress-bar {
+            height: 100%;
+            background: white;
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            font-size: 2rem;
+        }
+
+        .footer-links a {
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: scale(1.2) rotate(15deg);
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .hero p { font-size: 1.2rem; }
@@ -1114,6 +1376,7 @@
             .timeline-item:nth-child(odd) .timeline-dot,
             .timeline-item:nth-child(even) .timeline-dot { left: 10px; }
             .playground-container { grid-template-columns: 1fr; }
+            .nav-menu { left: 10px; top: 100px; }
             .theme-switcher { flex-wrap: wrap; }
         }
     </style>
@@ -1122,8 +1385,14 @@
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loader"></div>
-        <div class="loading-text">Loading Awesomeness...</div>
+        <div class="loading-text" id="loadingText">Loading Awesomeness...</div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar" id="loadingProgressBar"></div>
+        </div>
     </div>
+
+    <!-- Live Clock -->
+    <div class="live-clock" id="liveClock">00:00:00</div>
 
     <!-- Matrix Rain Canvas -->
     <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
@@ -1131,15 +1400,28 @@
     <!-- Particle Container -->
     <div class="particle-container" id="particleContainer"></div>
 
+    <!-- Navigation Menu -->
+    <div class="nav-menu">
+        <button class="nav-btn" onclick="smoothScroll('.hero')" title="Home">🏠</button>
+        <button class="nav-btn" onclick="smoothScroll('.games-section')" title="Games">🎮</button>
+        <button class="nav-btn" onclick="smoothScroll('.projects-section')" title="Projects">📁</button>
+        <button class="nav-btn" onclick="smoothScroll('.achievements-section')" title="Achievements">🏆</button>
+        <button class="nav-btn" onclick="smoothScroll('.chatbot-section')" title="Chat">💬</button>
+    </div>
+
     <!-- Theme Switcher -->
     <div class="theme-switcher">
         <button class="theme-btn active" onclick="setTheme('light')" title="Light Mode">☀️</button>
         <button class="theme-btn" onclick="setTheme('dark')" title="Dark Mode">🌙</button>
         <button class="theme-btn" onclick="setTheme('matrix')" title="Matrix Mode">🟩</button>
+        <button class="theme-btn" onclick="setTheme('neon')" title="Neon Mode">💜</button>
     </div>
 
-    <!-- Sound Toggle -->
-    <button class="sound-toggle" onclick="toggleSound()" id="soundBtn">🔊</button>
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" onclick="toggleSound()" id="soundBtn" title="Toggle Sound">🔊</button>
+        <button class="control-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+    </div>
 
     <!-- Toast Notification -->
     <div class="toast" id="toast"></div>
@@ -1147,13 +1429,25 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="stars" id="stars"></div>
-        <h1>🚀 My Web Development Odyssey</h1>
-        <p>A Journey Through Code, Creativity, and Coffee ☕</p>
+        <h1>🚀 Ultimate Web Dev Portfolio</h1>
+        <p>The Most Interactive Portfolio You'll Ever See! 🎨</p>
+        
+        <div class="cube-container">
+            <div class="cube">
+                <div class="cube-face front">💻</div>
+                <div class="cube-face back">🎨</div>
+                <div class="cube-face right">⚡</div>
+                <div class="cube-face left">🚀</div>
+                <div class="cube-face top">🔥</div>
+                <div class="cube-face bottom">✨</div>
+            </div>
+        </div>
+        
         <div class="hero-buttons">
             <button class="hero-btn" onclick="smoothScroll('.timeline-section')">📚 My Journey</button>
-            <button class="hero-btn" onclick="smoothScroll('.typing-game-section')">🎮 Play Game</button>
-            <button class="hero-btn" onclick="smoothScroll('.quiz-section')">🧠 Take Quiz</button>
-            <button class="hero-btn" onclick="smoothScroll('.terminal-section')">💻 Terminal</button>
+            <button class="hero-btn" onclick="smoothScroll('.games-section')">🎮 Play Games</button>
+            <button class="hero-btn" onclick="smoothScroll('.playground-section')">💻 Code Lab</button>
+            <button class="hero-btn" onclick="smoothScroll('.drawing-section')">🎨 Draw</button>
         </div>
         <div class="scroll-indicator" onclick="smoothScroll('.stats-section')">
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
@@ -1166,34 +1460,42 @@
     <section class="stats-section">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-card">
+                <div class="stat-card" onclick="playSound()">
                     <div class="stat-number" data-target="50">0</div>
                     <div class="stat-label">Projects Completed</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" onclick="playSound()">
                     <div class="stat-number" data-target="1000">0</div>
                     <div class="stat-label">Hours of Coding</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-target="15">0</div>
+                <div class="stat-card" onclick="playSound()">
+                    <div class="stat-number" data-target="20">0</div>
                     <div class="stat-label">Technologies Learned</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" onclick="playSound()">
                     <div class="stat-number" data-target="999">0</div>
-                    <div class="stat-label">Cups of Coffee</div>
+                    <div class="stat-label">Cups of Coffee ☕</div>
+                </div>
+                <div class="stat-card" onclick="playSound()">
+                    <div class="stat-number" data-target="10000">0</div>
+                    <div class="stat-label">Lines of Code</div>
+                </div>
+                <div class="stat-card" onclick="playSound()">
+                    <div class="stat-number" data-target="42">0</div>
+                    <div class="stat-label">Bug Fixes 🐛</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Timeline Section -->
-    <section class="timeline-section">
+    <section class="timeline-section section">
         <div class="container">
             <h2 class="section-title">📚 Learning Journey</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content" onclick="showModal('HTML & CSS', 'Started with the fundamentals: semantic HTML5, CSS3, Flexbox, Grid, responsive design, and animations. Built my first portfolio from scratch!')">
+                    <div class="timeline-content" onclick="showModal('HTML & CSS', 'Started with the fundamentals: semantic HTML5, CSS3, Flexbox, Grid, responsive design, animations, and accessibility. Built my first portfolio from scratch!')">
                         <h3>🎨 HTML & CSS Mastery</h3>
                         <p>Where it all began - learning to paint the web!</p>
                         <p><strong>Weeks 1-3</strong></p>
@@ -1202,7 +1504,7 @@
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content" onclick="showModal('JavaScript', 'Dove deep into ES6+, DOM manipulation, event handling, async/await, promises, fetch API, and built interactive web applications.')">
+                    <div class="timeline-content" onclick="showModal('JavaScript', 'Dove deep into ES6+, DOM manipulation, event handling, async/await, promises, fetch API, and built interactive web applications with vanilla JavaScript.')">
                         <h3>⚡ JavaScript Fundamentals</h3>
                         <p>Making websites come alive with interactivity!</p>
                         <p><strong>Weeks 4-7</strong></p>
@@ -1211,7 +1513,7 @@
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content" onclick="showModal('Frontend Frameworks', 'Explored React, Vue, and Angular. Learned about components, state management, virtual DOM, hooks, and modern frontend architecture.')">
+                    <div class="timeline-content" onclick="showModal('Frontend Frameworks', 'Explored React, Vue, and Angular. Learned about components, state management, virtual DOM, hooks, and modern frontend architecture with best practices.')">
                         <h3>⚛️ Frontend Frameworks</h3>
                         <p>React, Vue, and the component revolution!</p>
                         <p><strong>Weeks 8-11</strong></p>
@@ -1220,7 +1522,7 @@
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content" onclick="showModal('Backend Development', 'Built REST APIs with Node.js/Express, learned database design with SQL and MongoDB, authentication, middleware, and server architecture.')">
+                    <div class="timeline-content" onclick="showModal('Backend Development', 'Built REST APIs with Node.js/Express, learned database design with SQL and MongoDB, authentication, middleware, server architecture, and API security.')">
                         <h3>🖥️ Backend Development</h3>
                         <p>Node.js, Express, databases, and APIs!</p>
                         <p><strong>Weeks 12-15</strong></p>
@@ -1229,9 +1531,9 @@
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content" onclick="showModal('Full Stack Projects', 'Combined everything: built full-stack applications with authentication, real-time features, deployment, CI/CD, and cloud hosting.')">
+                    <div class="timeline-content" onclick="showModal('Full Stack Projects', 'Combined everything: built full-stack applications with authentication, real-time features, deployment, CI/CD pipelines, and cloud hosting on AWS.')">
                         <h3>🎯 Full Stack Integration</h3>
-                        <p>Bringing it all together with complete applications!</p>
+                        <p>Bringing it all together!</p>
                         <p><strong>Weeks 16-18</strong></p>
                     </div>
                 </div>
@@ -1240,9 +1542,9 @@
     </section>
 
     <!-- Skills Section -->
-    <section class="skills-section">
+    <section class="skills-section section">
         <div class="container">
-            <h2 class="section-title">💪 Skills Acquired</h2>
+            <h2 class="section-title">💪 Skills Mastered</h2>
             <div class="skills-grid">
                 <div class="skill-card">
                     <h3>HTML5 & CSS3</h3>
@@ -1284,131 +1586,180 @@
                     <p>Jest, Chrome DevTools, unit testing</p>
                     <div class="skill-bar"><div class="skill-progress" data-progress="78"></div></div>
                 </div>
+                <div class="skill-card">
+                    <h3>TypeScript</h3>
+                    <p>Static typing, interfaces, generics</p>
+                    <div class="skill-bar"><div class="skill-progress" data-progress="82"></div></div>
+                </div>
+                <div class="skill-card">
+                    <h3>APIs & GraphQL</h3>
+                    <p>RESTful design, GraphQL queries, Apollo</p>
+                    <div class="skill-bar"><div class="skill-progress" data-progress="77"></div></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Code Demo Section -->
-    <section class="code-demo-section">
+    <!-- Games Section -->
+    <section class="games-section section">
         <div class="container">
-            <h2 class="section-title" style="color: white;">💻 Live Code Demo</h2>
-            <p style="text-align: center; margin-bottom: 20px;">Watch this code come to life!</p>
-            <div class="code-editor">
-                <div class="code-editor-content" id="codeDemo"></div>
+            <h2 class="section-title">🎮 Interactive Games & Tools</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-icon">🧮</div>
+                    <h3>Calculator</h3>
+                    <p>Functional calculator app</p>
+                    <button class="game-btn" onclick="openGame('calculator')">Launch</button>
+                </div>
+                <div class="game-card">
+                    <div class="game-icon">⭕</div>
+                    <h3>Tic Tac Toe</h3>
+                    <p>Classic strategy game</p>
+                    <button class="game-btn" onclick="openGame('tictactoe')">Play</button>
+                </div>
+                <div class="game-card">
+                    <div class="game-icon">🧠</div>
+                    <h3>Memory Game</h3>
+                    <p>Test your memory skills</p>
+                    <button class="game-btn" onclick="openGame('memory')">Play</button>
+                </div>
+                <div class="game-card">
+                    <div class="game-icon">🐍</div>
+                    <h3>Snake Game</h3>
+                    <p>Classic snake challenge</p>
+                    <button class="game-btn" onclick="openGame('snake')">Play</button>
+                </div>
+                <div class="game-card">
+                    <div class="game-icon">🎨</div>
+                    <h3>Drawing Canvas</h3>
+                    <p>Create digital art</p>
+                    <button class="game-btn" onclick="smoothScroll('.drawing-section')">Draw</button>
+                </div>
+                <div class="game-card">
+                    <div class="game-icon">📝</div>
+                    <h3>Knowledge Quiz</h3>
+                    <p>Test your web dev knowledge</p>
+                    <button class="game-btn" onclick="smoothScroll('.quiz-section')">Start</button>
+                </div>
             </div>
-            <div id="codeDemoOutput" style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; min-height: 100px; color: #000;"></div>
         </div>
     </section>
 
     <!-- Code Playground -->
-    <section class="playground-section">
+    <section class="playground-section section">
         <div class="container">
-            <h2 class="section-title">🎨 Live Code Playground</h2>
-            <p style="text-align: center; margin-bottom: 20px;">Try your HTML code here!</p>
+            <h2 class="section-title">💻 Live Code Playground</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Write HTML and see it come to life!</p>
             <div class="playground-container">
                 <div>
-                    <h3 style="margin-bottom: 10px;">HTML Editor</h3>
-                    <textarea class="code-input" id="htmlInput" placeholder="Type your HTML here..."><h1>Hello World!</h1>
-<p>Edit me!</p></textarea>
+                    <h3 style="margin-bottom: 10px; color: var(--dark);">HTML Editor</h3>
+                    <textarea class="code-input" id="htmlInput" placeholder="Type your HTML here..."><div style="text-align: center; padding: 50px;">
+  <h1 style="color: #6366f1;">Hello World! 🌍</h1>
+  <p>Edit me and click Run!</p>
+  <button style="padding: 10px 20px; background: #10b981; color: white; border: none; border-radius: 5px; cursor: pointer;">Click Me!</button>
+</div></textarea>
                     <button class="playground-btn" onclick="runCode()">▶ Run Code</button>
+                    <button class="playground-btn" onclick="clearCode()">🗑️ Clear</button>
                 </div>
                 <div>
-                    <h3 style="margin-bottom: 10px;">Live Preview</h3>
+                    <h3 style="margin-bottom: 10px; color: var(--dark);">Live Preview</h3>
                     <div class="code-output" id="htmlOutput"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Typing Speed Game -->
-    <section class="typing-game-section">
+    <!-- Drawing Section -->
+    <section class="drawing-section section">
         <div class="container">
-            <h2 class="section-title" style="color: white;">⌨️ Typing Speed Challenge</h2>
-            <div class="typing-game">
-                <div class="typing-text" id="typingText">
-                    The quick brown fox jumps over the lazy dog while learning to code with JavaScript and React.
-                </div>
-                <input type="text" class="typing-input" id="typingInput" placeholder="Start typing to begin...">
-                <div class="typing-stats">
-                    <div>WPM: <strong id="wpm">0</strong></div>
-                    <div>Accuracy: <strong id="accuracy">100</strong>%</div>
-                    <div>Time: <strong id="timer">60</strong>s</div>
-                </div>
-                <button class="playground-btn" onclick="resetTypingGame()" style="margin-top: 20px;">🔄 Reset Game</button>
+            <h2 class="section-title">🎨 Digital Canvas</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Draw your masterpiece!</p>
+            <div class="drawing-controls">
+                <div class="color-picker" style="background: black;" onclick="setDrawColor('black')"></div>
+                <div class="color-picker" style="background: red;" onclick="setDrawColor('red')"></div>
+                <div class="color-picker" style="background: blue;" onclick="setDrawColor('blue')"></div>
+                <div class="color-picker" style="background: green;" onclick="setDrawColor('green')"></div>
+                <div class="color-picker" style="background: yellow;" onclick="setDrawColor('yellow')"></div>
+                <div class="color-picker" style="background: purple;" onclick="setDrawColor('purple')"></div>
+                <div class="color-picker" style="background: orange;" onclick="setDrawColor('orange')"></div>
+                <button class="brush-size" onclick="changeBrushSize(2)">Small</button>
+                <button class="brush-size" onclick="changeBrushSize(5)">Medium</button>
+                <button class="brush-size" onclick="changeBrushSize(10)">Large</button>
+                <button class="brush-size" onclick="clearCanvas()">Clear Canvas</button>
+                <button class="brush-size" onclick="saveDrawing()">💾 Save</button>
             </div>
+            <canvas class="drawing-canvas" id="drawingCanvas" width="800" height="500"></canvas>
         </div>
     </section>
 
     <!-- Quiz Section -->
-    <section class="quiz-section">
+    <section class="quiz-section section">
         <div class="container">
             <h2 class="section-title">🧠 Web Dev Knowledge Quiz</h2>
             <div class="quiz-container">
                 <div class="quiz-question" id="quizQuestion">Loading question...</div>
                 <div class="quiz-options" id="quizOptions"></div>
-                <div class="quiz-score" id="quizScore"></div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <div style="font-size: 1.5rem; color: var(--accent);">Score: <span id="quizScore">0</span></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Terminal Section -->
-    <section class="terminal-section">
+    <!-- Chatbot Section -->
+    <section class="chatbot-section section">
         <div class="container">
-            <h2 class="section-title" style="color: #00ff00;">💻 Interactive Terminal</h2>
-            <p style="text-align: center; margin-bottom: 20px;">Type 'help' to see available commands</p>
-            <div class="terminal">
-                <div class="terminal-header">
-                    <div class="terminal-btn red"></div>
-                    <div class="terminal-btn yellow"></div>
-                    <div class="terminal-btn green"></div>
-                    <span style="margin-left: 10px; font-size: 14px;">user@webdev:~</span>
-                </div>
-                <div class="terminal-body" id="terminalBody">
-                    <div class="terminal-line">Welcome to Web Dev Terminal v1.0</div>
-                    <div class="terminal-line">Type 'help' for available commands</div>
-                    <div class="terminal-line" style="margin-top: 10px;">
-                        <span class="terminal-prompt">$ </span>
-                        <input type="text" class="terminal-input" id="terminalInput" autofocus>
+            <h2 class="section-title">💬 AI Assistant</h2>
+            <p style="text-align: center; margin-bottom: 20px; color: white;">Chat with my virtual assistant!</p>
+            <div class="chatbot-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-message bot">
+                        👋 Hello! I'm your virtual assistant. Ask me about my skills, projects, or anything web development related!
                     </div>
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Type your message...">
+                    <button class="chat-send" onclick="sendMessage()">Send 📤</button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section class="projects-section">
+    <section class="projects-section section">
         <div class="container">
-            <h2 class="section-title">🎨 Projects Gallery</h2>
+            <h2 class="section-title">🎨 Project Showcase</h2>
             <div class="projects-grid">
-                <div class="project-card" onclick="showModal('E-Commerce Platform', 'Full-stack e-commerce with shopping cart, payment integration, user authentication, admin dashboard. Built with React, Node.js, MongoDB, and Stripe API.')">
+                <div class="project-card" onclick="showModal('E-Commerce Platform', 'Full-stack e-commerce with shopping cart, payment integration (Stripe), user authentication, admin dashboard, inventory management. Built with React, Node.js, MongoDB, and deployed on AWS.')">
                     <div class="project-image">🛒</div>
                     <div class="project-content">
                         <h3>E-Commerce Platform</h3>
-                        <p>Full-stack shopping experience with payment integration</p>
+                        <p>Complete online shopping experience</p>
                         <div class="project-tags">
                             <span class="project-tag">React</span>
                             <span class="project-tag">Node.js</span>
                             <span class="project-tag">MongoDB</span>
+                            <span class="project-tag">Stripe</span>
                         </div>
                     </div>
                 </div>
-                <div class="project-card" onclick="showModal('Social Media Dashboard', 'Real-time social media analytics dashboard with live updates, data visualization, and user management. Technologies: React, WebSockets, Chart.js, Firebase.')">
+                <div class="project-card" onclick="showModal('Social Dashboard', 'Real-time social media analytics with live updates, data visualization using Chart.js, user management, and API integrations. Built with React, WebSockets, Chart.js, and Firebase.')">
                     <div class="project-image">📊</div>
                     <div class="project-content">
                         <h3>Social Media Dashboard</h3>
-                        <p>Real-time analytics with beautiful visualizations</p>
+                        <p>Real-time analytics and insights</p>
                         <div class="project-tags">
                             <span class="project-tag">React</span>
                             <span class="project-tag">WebSocket</span>
-                            <span class="project-tag">Firebase</span>
+                            <span class="project-tag">Chart.js</span>
                         </div>
                     </div>
                 </div>
-                <div class="project-card" onclick="showModal('Task Management App', 'Collaborative task manager with drag-and-drop, real-time sync, teams, and notifications. Stack: Vue.js, Express, PostgreSQL, Socket.io.')">
+                <div class="project-card" onclick="showModal('Task Manager', 'Collaborative task management with drag-and-drop, real-time sync, team collaboration, notifications. Built with Vue.js, Express, PostgreSQL, and Socket.io.')">
                     <div class="project-image">✅</div>
                     <div class="project-content">
                         <h3>Task Management App</h3>
-                        <p>Collaborative tool with drag-and-drop interface</p>
+                        <p>Collaborative productivity tool</p>
                         <div class="project-tags">
                             <span class="project-tag">Vue.js</span>
                             <span class="project-tag">Express</span>
@@ -1416,11 +1767,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" onclick="showModal('Weather App', 'Beautiful weather application with geolocation, forecasts, and interactive maps. Built with vanilla JavaScript, OpenWeather API, and Mapbox.')">
+                <div class="project-card" onclick="showModal('Weather App', 'Beautiful weather application with geolocation, 7-day forecasts, interactive maps, and weather alerts. Built with vanilla JavaScript, OpenWeather API, and Mapbox.')">
                     <div class="project-image">🌤️</div>
                     <div class="project-content">
                         <h3>Weather Application</h3>
-                        <p>Location-based weather with stunning UI</p>
+                        <p>Location-based weather forecasts</p>
                         <div class="project-tags">
                             <span class="project-tag">JavaScript</span>
                             <span class="project-tag">API</span>
@@ -1428,11 +1779,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" onclick="showModal('Blog Platform', 'Full-featured blogging platform with markdown support, comments, likes, and SEO optimization. Technologies: Next.js, MongoDB, NextAuth, MDX.')">
+                <div class="project-card" onclick="showModal('Blog Platform', 'Full-featured blogging platform with markdown support, comments, likes, SEO optimization, and RSS feeds. Built with Next.js, MongoDB, NextAuth, and MDX.')">
                     <div class="project-image">📝</div>
                     <div class="project-content">
                         <h3>Blog Platform</h3>
-                        <p>CMS with markdown editor and SEO features</p>
+                        <p>Content management system</p>
                         <div class="project-tags">
                             <span class="project-tag">Next.js</span>
                             <span class="project-tag">MongoDB</span>
@@ -1440,14 +1791,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" onclick="showModal('Portfolio Website', 'This very website you are looking at! Built with pure HTML, CSS, and JavaScript. Features animations, interactive elements, games, and Easter eggs!')">
+                <div class="project-card" onclick="showModal('This Portfolio!', 'The ultimate interactive portfolio featuring games, tools, chatbot, drawing canvas, 3D animations, multiple themes, and 30+ Easter eggs. Built with pure HTML, CSS, and JavaScript!')">
                     <div class="project-image">🚀</div>
                     <div class="project-content">
                         <h3>Interactive Portfolio</h3>
-                        <p>The website you're exploring right now!</p>
+                        <p>The website you're on right now!</p>
                         <div class="project-tags">
-                            <span class="project-tag">HTML</span>
-                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">HTML5</span>
+                            <span class="project-tag">CSS3</span>
                             <span class="project-tag">JavaScript</span>
                         </div>
                     </div>
@@ -1457,17 +1808,25 @@
     </section>
 
     <!-- Achievements Section -->
-    <section class="achievements-section">
+    <section class="achievements-section section">
         <div class="container">
-            <h2 class="section-title">🏆 Achievements Unlocked</h2>
+            <h2 class="section-title">🏆 Achievements & Badges</h2>
             <div class="badges-container">
-                <div class="badge" data-badge="css">
+                <div class="badge" data-badge="html">
                     🎨
-                    <div class="badge-tooltip">CSS Master</div>
+                    <div class="badge-tooltip">HTML Master</div>
+                </div>
+                <div class="badge" data-badge="css">
+                    💅
+                    <div class="badge-tooltip">CSS Wizard</div>
                 </div>
                 <div class="badge" data-badge="js">
                     ⚡
                     <div class="badge-tooltip">JavaScript Ninja</div>
+                </div>
+                <div class="badge" data-badge="react">
+                    ⚛️
+                    <div class="badge-tooltip">React Expert</div>
                 </div>
                 <div class="badge" data-badge="api">
                     🚀
@@ -1475,64 +1834,98 @@
                 </div>
                 <div class="badge" data-badge="fullstack">
                     🔥
-                    <div class="badge-tooltip">Full Stack Developer</div>
+                    <div class="badge-tooltip">Full Stack Dev</div>
                 </div>
-                <div class="badge" data-badge="problem">
-                    🎯
-                    <div class="badge-tooltip">Problem Solver</div>
+                <div class="badge" data-badge="database">
+                    💾
+                    <div class="badge-tooltip">Database Pro</div>
                 </div>
-                <div class="badge" data-badge="warrior">
-                    💪
-                    <div class="badge-tooltip">Code Warrior</div>
+                <div class="badge" data-badge="git">
+                    🌿
+                    <div class="badge-tooltip">Git Master</div>
                 </div>
-                <div class="badge" data-badge="innovation">
-                    🌟
-                    <div class="badge-tooltip">Innovation Award</div>
-                </div>
-                <div class="badge" data-badge="learner">
-                    🧠
-                    <div class="badge-tooltip">Quick Learner</div>
-                </div>
-                <div class="badge locked" data-badge="secret1">
+                <div class="badge locked" data-badge="konami">
                     🔒
                     <div class="badge-tooltip">Konami Master</div>
                 </div>
-                <div class="badge locked" data-badge="secret2">
+                <div class="badge locked" data-badge="quiz">
                     🔒
                     <div class="badge-tooltip">Quiz Champion</div>
                 </div>
-                <div class="badge locked" data-badge="secret3">
+                <div class="badge locked" data-badge="artist">
                     🔒
-                    <div class="badge-tooltip">Speed Typer</div>
+                    <div class="badge-tooltip">Digital Artist</div>
                 </div>
-                <div class="badge locked" data-badge="secret4">
+                <div class="badge locked" data-badge="gamer">
+                    🔒
+                    <div class="badge-tooltip">Game Master</div>
+                </div>
+                <div class="badge locked" data-badge="matrix">
                     🔒
                     <div class="badge-tooltip">Matrix Hacker</div>
                 </div>
+                <div class="badge locked" data-badge="explorer">
+                    🔒
+                    <div class="badge-tooltip">Explorer</div>
+                </div>
+                <div class="badge locked" data-badge="coder">
+                    🔒
+                    <div class="badge-tooltip">Code Warrior</div>
+                </div>
+                <div class="badge locked" data-badge="ultimate">
+                    🔒
+                    <div class="badge-tooltip">Ultimate Master</div>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Easter Egg Section -->
-    <section class="easter-egg-section">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">🎮 Secret Zone</h2>
-            <p class="konami-code-hint">Try the Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A</p>
-            <div id="secretUnlock" class="secret-unlock">
-                <h3 style="font-size: 3rem; margin: 20px 0;">🎉 SECRET UNLOCKED! 🎉</h3>
-                <p style="font-size: 1.5rem;">You found the developer's secret! Here's what I really learned:</p>
-                <ul style="text-align: left; max-width: 600px; margin: 20px auto; font-size: 1.2rem;">
-                    <li>☕ Coffee is a legitimate programming tool</li>
-                    <li>🐛 Debugging is 90% of development</li>
-                    <li>📚 Stack Overflow is my best friend</li>
-                    <li>💻 Ctrl+Z is the most important key combo</li>
-                    <li>🌙 Best code is written at 2 AM</li>
-                    <li>🎨 Centering a div is still challenging</li>
-                    <li>🔥 Console.log() is the ultimate debug tool</li>
-                    <li>⏰ "5 minutes" always means 2 hours</li>
-                </ul>
+            <div class="progress-tracker">
+                <h3 style="text-align: center; margin-bottom: 30px; color: var(--primary);">📈 Learning Progress</h3>
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>Frontend Development</span>
+                        <span id="frontendProgress">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" data-progress="92"></div>
+                    </div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>Backend Development</span>
+                        <span id="backendProgress">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>Database Management</span>
+                        <span id="databaseProgress">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" data-progress="78"></div>
+                    </div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>DevOps & Deployment</span>
+                        <span id="devopsProgress">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" data-progress="70"></div>
+                    </div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>Overall Portfolio Completion</span>
+                        <span id="overallProgress">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" data-progress="88"></div>
+                    </div>
+                </div>
             </div>
-            <p style="margin-top: 40px; opacity: 0.7;">Psst... try clicking around and exploring! There are multiple Easter eggs hidden! 🎁</p>
         </div>
     </section>
 
@@ -1540,18 +1933,22 @@
     <footer>
         <h3>Let's Connect! 🤝</h3>
         <div class="footer-links">
-            <a href="#" title="GitHub">💻</a>
-            <a href="#" title="LinkedIn">🔗</a>
-            <a href="#" title="Twitter">🐦</a>
-            <a href="#" title="Email">✉️</a>
+            <a href="#" title="GitHub" onclick="updateEasterEggCounter(); return false;">💻</a>
+            <a href="#" title="LinkedIn" onclick="updateEasterEggCounter(); return false;">🔗</a>
+            <a href="#" title="Twitter" onclick="updateEasterEggCounter(); return false;">🐦</a>
+            <a href="#" title="Email" onclick="updateEasterEggCounter(); return false;">✉️</a>
+            <a href="#" title="Portfolio" onclick="updateEasterEggCounter(); return false;">🌐</a>
         </div>
-        <p>Made with ❤️ and lots of ☕</p>
-        <p style="margin-top: 10px; opacity: 0.6;">© 2025 - A Final Year CS Student's Web Dev Journey</p>
+        <p>Made with ❤️, 💻, and lots of ☕</p>
+        <p style="margin-top: 10px; opacity: 0.6;">© 2025 - The Ultimate Web Dev Portfolio</p>
         <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.5;">
-            Easter Egg Counter: <span id="eggCounter">0</span>/20 found
+            🥚 Easter Eggs Found: <span id="eggCounter">0</span>/30
         </p>
         <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.4;">
-            💡 Tip: Try different themes, play the games, and explore the terminal!
+            💡 Features: <span id="featureCounter">0</span>/25 Discovered
+        </p>
+        <p style="margin-top: 5px; font-size: 0.8rem; opacity: 0.4;">
+            ⏱️ Time Spent: <span id="timeSpent">0:00</span>
         </p>
     </footer>
 
@@ -1560,28 +1957,127 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <h2 id="modalTitle"></h2>
-            <p id="modalContent"></p>
+            <div id="modalContent"></div>
         </div>
     </div>
 
     <script>
-        // Global Variables
+        // ============================================
+        // GLOBAL VARIABLES
+        // ============================================
         let soundEnabled = true;
         let easterEggCount = 0;
-        let typingGameActive = false;
-        let typingGameTimer = null;
+        let featuresDiscovered = new Set();
+        let startTime = Date.now();
         let currentQuizQuestion = 0;
         let quizScore = 0;
 
-        // Loading Screen
+        // Drawing Canvas Variables
+        let isDrawing = false;
+        let drawColor = 'black';
+        let brushSize = 5;
+
+        // Calculator Variables
+        let calcDisplay = '';
+
+        // Game Variables
+        let tttBoard = ['', '', '', '', '', '', '', '', ''];
+        let tttPlayer = 'X';
+        let memoryCards = [];
+        let memoryFlipped = [];
+        let memoryMatched = [];
+        let snakeGame = null;
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
         window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loadingScreen').style.display = 'none';
-                showToast('Welcome! 🎉 Explore and find hidden Easter eggs!');
-            }, 2000);
+            initializePortfolio();
         });
 
-        // Theme Switcher
+        function initializePortfolio() {
+            let progress = 0;
+            const progressBar = document.getElementById('loadingProgressBar');
+            const loadingText = document.getElementById('loadingText');
+            
+            const loadingMessages = [
+                'Loading Awesomeness...',
+                'Brewing Coffee ☕...',
+                'Initializing Features...',
+                'Painting the Canvas 🎨...',
+                'Compiling Code 💻...',
+                'Almost There! 🚀'
+            ];
+            
+            let messageIndex = 0;
+            
+            const loadingInterval = setInterval(() => {
+                progress += 5;
+                progressBar.style.width = progress + '%';
+                
+                if (progress % 20 === 0) {
+                    loadingText.textContent = loadingMessages[messageIndex];
+                    messageIndex++;
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(loadingInterval);
+                    setTimeout(() => {
+                        document.getElementById('loadingScreen').style.display = 'none';
+                        showToast('🎉 Welcome! Explore and discover 30 Easter eggs!');
+                        startTimeTracker();
+                    }, 500);
+                }
+            }, 50);
+
+            // Initialize everything
+            createStars();
+            createParticles();
+            initializeClock();
+            initializeDrawingCanvas();
+            loadQuizQuestion();
+            runCode();
+            
+            // Console Easter egg
+            console.log('%c🎉 Welcome Developer! 🎉', 'font-size: 24px; color: #10b981; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);');
+            console.log('%c🎮 Available Commands:', 'font-size: 16px; color: #6366f1; font-weight: bold;');
+            console.log('%c  confetti() - Celebrate! 🎊', 'font-size: 14px;');
+            console.log('%c  setTheme("matrix") - Enter the Matrix 🟩', 'font-size: 14px;');
+            console.log('%c  showToast("message") - Show notification 💬', 'font-size: 14px;');
+            console.log('%c  unlockAllBadges() - Unlock everything 🏆', 'font-size: 14px;');
+            console.log('%c\n🔍 Try to find all 30 Easter eggs!', 'font-size: 16px; color: #ec4899;');
+            updateEasterEggCounter();
+        }
+
+        // ============================================
+        // TIME TRACKER
+        // ============================================
+        function startTimeTracker() {
+            setInterval(() => {
+                const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                const minutes = Math.floor(elapsed / 60);
+                const seconds = elapsed % 60;
+                document.getElementById('timeSpent').textContent = 
+                    `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // ============================================
+        // LIVE CLOCK
+        // ============================================
+        function initializeClock() {
+            function updateClock() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('en-US', { hour12: false });
+                document.getElementById('liveClock').textContent = timeString;
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+        }
+
+        // ============================================
+        // THEME SYSTEM
+        // ============================================
         function setTheme(theme) {
             document.body.setAttribute('data-theme', theme);
             document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
@@ -1589,26 +2085,30 @@
             
             if (theme === 'matrix') {
                 startMatrixRain();
-                unlockBadge('secret4');
+                unlockBadge('matrix');
             } else {
                 stopMatrixRain();
             }
             
             playSound();
-            showToast(`Theme changed to ${theme} mode! ✨`);
-            updateEasterEggCounter();
+            showToast(`🎨 Theme changed to ${theme} mode!`);
+            discoverFeature('theme-' + theme);
         }
 
-        // Sound Toggle
+        // ============================================
+        // SOUND SYSTEM
+        // ============================================
         function toggleSound() {
             soundEnabled = !soundEnabled;
             document.getElementById('soundBtn').textContent = soundEnabled ? '🔊' : '🔇';
-            showToast(soundEnabled ? 'Sound enabled! 🔊' : 'Sound disabled 🔇');
+            showToast(soundEnabled ? '🔊 Sound enabled!' : '🔇 Sound disabled');
+            discoverFeature('sound-toggle');
         }
 
-        function playSound() {
-            if (soundEnabled) {
-                // Create a simple beep sound
+        function playSound(frequency = 800) {
+            if (!soundEnabled) return;
+            
+            try {
                 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 const oscillator = audioContext.createOscillator();
                 const gainNode = audioContext.createGain();
@@ -1616,7 +2116,7 @@
                 oscillator.connect(gainNode);
                 gainNode.connect(audioContext.destination);
                 
-                oscillator.frequency.value = 800;
+                oscillator.frequency.value = frequency;
                 oscillator.type = 'sine';
                 
                 gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
@@ -1624,20 +2124,29 @@
                 
                 oscillator.start(audioContext.currentTime);
                 oscillator.stop(audioContext.currentTime + 0.1);
+            } catch(e) {
+                console.log('Audio not supported');
             }
         }
 
-        // Toast Notification
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.style.display = 'block';
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 3000);
+        // ============================================
+        // FULLSCREEN
+        // ============================================
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+                showToast('📺 Fullscreen enabled!');
+            } else {
+                document.exitFullscreen();
+                showToast('📺 Fullscreen disabled!');
+            }
+            discoverFeature('fullscreen');
+            updateEasterEggCounter();
         }
 
-        // Create stars
+        // ============================================
+        // VISUAL EFFECTS
+        // ============================================
         function createStars() {
             const starsContainer = document.getElementById('stars');
             for (let i = 0; i < 100; i++) {
@@ -1650,7 +2159,6 @@
             }
         }
 
-        // Create floating particles
         function createParticles() {
             const container = document.getElementById('particleContainer');
             for (let i = 0; i < 50; i++) {
@@ -1664,9 +2172,9 @@
             }
         }
 
-        // Cursor trail effect
+        // Cursor trail
         document.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.8) {
+            if (Math.random() > 0.9) {
                 const trail = document.createElement('div');
                 trail.className = 'cursor-trail';
                 trail.style.left = e.pageX + 'px';
@@ -1676,15 +2184,20 @@
             }
         });
 
-        // Smooth scroll
+        // ============================================
+        // NAVIGATION
+        // ============================================
         function smoothScroll(target) {
             document.querySelector(target).scrollIntoView({
                 behavior: 'smooth'
             });
-            playSound();
+            playSound(600);
+            discoverFeature('navigation');
         }
 
-        // Animated Counter
+        // ============================================
+        // STATS COUNTER
+        // ============================================
         function animateCounter(element, target) {
             let current = 0;
             const increment = target / 100;
@@ -1698,7 +2211,6 @@
             }, 20);
         }
 
-        // Stats Counter Observer
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1714,7 +2226,9 @@
 
         statsObserver.observe(document.querySelector('.stats-section'));
 
-        // Intersection Observer for timeline
+        // ============================================
+        // TIMELINE
+        // ============================================
         const timelineObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1727,13 +2241,17 @@
             timelineObserver.observe(item);
         });
 
-        // Animate skill bars
+        // ============================================
+        // SKILLS
+        // ============================================
         const skillObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const progress = entry.target.querySelector('.skill-progress');
-                    const percentage = progress.getAttribute('data-progress');
-                    progress.style.width = percentage + '%';
+                    if (progress) {
+                        const percentage = progress.getAttribute('data-progress');
+                        progress.style.width = percentage + '%';
+                    }
                 }
             });
         }, { threshold: 0.5 });
@@ -1742,185 +2260,479 @@
             skillObserver.observe(card);
         });
 
-        // Code demo animation
-        const codeLines = [
-            '<span style="color: #ff7b72;">const</span> <span style="color: #79c0ff;">webDevelopment</span> = {',
-            '  <span style="color: #79c0ff;">passion</span>: <span style="color: #a5d6ff;">"High"</span>,',
-            '  <span style="color: #79c0ff;">coffeeDrunk</span>: <span style="color: #79c0ff;">Infinity</span>,',
-            '  <span style="color: #79c0ff;">skillsLearned</span>: [<span style="color: #a5d6ff;">"HTML"</span>, <span style="color: #a5d6ff;">"CSS"</span>, <span style="color: #a5d6ff;">"JavaScript"</span>],',
-            '  <span style="color: #79c0ff;">learn</span>: <span style="color: #ff7b72;">function</span>() {',
-            '    <span style="color: #ff7b72;">return</span> <span style="color: #a5d6ff;">"Never stop learning!"</span>;',
-            '  },',
-            '  <span style="color: #79c0ff;">debug</span>: <span style="color: #ff7b72;">function</span>() {',
-            '    <span style="color: #d2a8ff;">console</span>.<span style="color: #d2a8ff;">log</span>(<span style="color: #a5d6ff;">"console.log is my best friend"</span>);',
-            '  }',
-            '};',
-            '',
-            '<span style="color: #8b949e;">// Execute the magic! ✨</span>',
-            '<span style="color: #d2a8ff;">console</span>.<span style="color: #d2a8ff;">log</span>(<span style="color: #79c0ff;">webDevelopment</span>.<span style="color: #d2a8ff;">learn</span>());'
-        ];
+        // Progress bars
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const fills = entry.target.querySelectorAll('.progress-bar-fill');
+                    fills.forEach(fill => {
+                        const percentage = fill.getAttribute('data-progress');
+                        fill.style.width = percentage + '%';
+                        
+                        // Update percentage text
+                        const label = fill.closest('.progress-item').querySelector('.progress-label span:last-child');
+                        if (label) {
+                            let current = 0;
+                            const target = parseInt(percentage);
+                            const interval = setInterval(() => {
+                                current++;
+                                label.textContent = current + '%';
+                                if (current >= target) clearInterval(interval);
+                            }, 20);
+                        }
+                    });
+                    progressObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
 
-        function typeCode() {
-            const codeDemo = document.getElementById('codeDemo');
-            codeLines.forEach((line, index) => {
-                setTimeout(() => {
-                    const lineDiv = document.createElement('div');
-                    lineDiv.className = 'code-line';
-                    lineDiv.innerHTML = line;
-                    lineDiv.style.animationDelay = index * 0.1 + 's';
-                    codeDemo.appendChild(lineDiv);
+        const progressTracker = document.querySelector('.progress-tracker');
+        if (progressTracker) {
+            progressObserver.observe(progressTracker);
+        }
+
+        // ============================================
+        // GAMES - CALCULATOR
+        // ============================================
+        function openGame(game) {
+            playSound();
+            discoverFeature('game-' + game);
+            
+            let content = '';
+            
+            switch(game) {
+                case 'calculator':
+                    content = `
+                        <div class="calculator">
+                            <div class="calc-display" id="calcDisplay">0</div>
+                            <div class="calc-buttons">
+                                <button class="calc-btn" onclick="calcInput('7')">7</button>
+                                <button class="calc-btn" onclick="calcInput('8')">8</button>
+                                <button class="calc-btn" onclick="calcInput('9')">9</button>
+                                <button class="calc-btn operator" onclick="calcInput('/')">/</button>
+                                <button class="calc-btn" onclick="calcInput('4')">4</button>
+                                <button class="calc-btn" onclick="calcInput('5')">5</button>
+                                <button class="calc-btn" onclick="calcInput('6')">6</button>
+                                <button class="calc-btn operator" onclick="calcInput('*')">×</button>
+                                <button class="calc-btn" onclick="calcInput('1')">1</button>
+                                <button class="calc-btn" onclick="calcInput('2')">2</button>
+                                <button class="calc-btn" onclick="calcInput('3')">3</button>
+                                <button class="calc-btn operator" onclick="calcInput('-')">-</button>
+                                <button class="calc-btn" onclick="calcInput('0')">0</button>
+                                <button class="calc-btn" onclick="calcInput('.')">.</button>
+                                <button class="calc-btn operator" onclick="calcInput('+')">+</button>
+                                <button class="calc-btn" onclick="calcClear()">C</button>
+                                <button class="calc-btn equals" onclick="calcEquals()">=</button>
+                            </div>
+                        </div>
+                    `;
+                    break;
                     
-                    if (index === codeLines.length - 1) {
-                        setTimeout(() => {
-                            document.getElementById('codeDemoOutput').innerHTML = 
-                                '<h3 style="color: #10b981; margin-bottom: 10px;">Console Output:</h3>' +
-                                '<p style="font-family: monospace; font-size: 1.2rem;">> "Never stop learning!"</p>';
-                        }, 1000);
+                case 'tictactoe':
+                    content = `
+                        <div style="text-align: center;">
+                            <h3 style="margin-bottom: 20px;">Tic Tac Toe</h3>
+                            <p id="tttStatus">Player X's turn</p>
+                            <div class="tictactoe-board" id="tttBoard">
+                                ${Array(9).fill(0).map((_, i) => 
+                                    `<div class="ttt-cell" onclick="tttMove(${i})"></div>`
+                                ).join('')}
+                            </div>
+                            <button class="game-btn" onclick="tttReset()">New Game</button>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'memory':
+                    initMemoryGame();
+                    content = `
+                        <div style="text-align: center;">
+                            <h3 style="margin-bottom: 20px;">Memory Game</h3>
+                            <p>Moves: <span id="memoryMoves">0</span></p>
+                            <div class="memory-board" id="memoryBoard"></div>
+                            <button class="game-btn" onclick="resetMemoryGame()">New Game</button>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'snake':
+                    content = `
+                        <div style="text-align: center;">
+                            <h3 style="margin-bottom: 20px;">Snake Game</h3>
+                            <div class="snake-score">Score: <span id="snakeScore">0</span></div>
+                            <canvas class="snake-canvas" id="snakeCanvas" width="400" height="400"></canvas>
+                            <p style="margin-top: 10px;">Use Arrow Keys to Move</p>
+                            <button class="game-btn" onclick="startSnakeGame()">Start Game</button>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            showModal(game.charAt(0).toUpperCase() + game.slice(1), content);
+            
+            // Initialize game after modal opens
+            setTimeout(() => {
+                if (game === 'memory') renderMemoryBoard();
+                if (game === 'snake') initSnakeGame();
+            }, 100);
+        }
+
+        function calcInput(value) {
+            playSound(400);
+            if (calcDisplay === '0') calcDisplay = '';
+            calcDisplay += value;
+            document.getElementById('calcDisplay').textContent = calcDisplay;
+        }
+
+        function calcClear() {
+            playSound(600);
+            calcDisplay = '0';
+            document.getElementById('calcDisplay').textContent = calcDisplay;
+        }
+
+        function calcEquals() {
+            playSound(800);
+            try {
+                calcDisplay = eval(calcDisplay).toString();
+                document.getElementById('calcDisplay').textContent = calcDisplay;
+                if (calcDisplay === '42') {
+                    showToast('🎉 You found the answer to life, the universe, and everything!');
+                    updateEasterEggCounter();
+                }
+            } catch(e) {
+                calcDisplay = 'Error';
+                document.getElementById('calcDisplay').textContent = calcDisplay;
+            }
+        }
+
+        // ============================================
+        // GAMES - TIC TAC TOE
+        // ============================================
+        function tttMove(index) {
+            if (tttBoard[index] !== '' || checkTTTWinner()) return;
+            
+            playSound(600);
+            tttBoard[index] = tttPlayer;
+            
+            const cells = document.querySelectorAll('.ttt-cell');
+            cells[index].textContent = tttPlayer;
+            cells[index].style.color = tttPlayer === 'X' ? '#6366f1' : '#ec4899';
+            
+            const winner = checkTTTWinner();
+            if (winner) {
+                document.getElementById('tttStatus').textContent = `Player ${winner} wins! 🎉`;
+                confetti();
+                unlockBadge('gamer');
+                return;
+            }
+            
+            if (tttBoard.every(cell => cell !== '')) {
+                document.getElementById('tttStatus').textContent = "It's a tie!";
+                return;
+            }
+            
+            tttPlayer = tttPlayer === 'X' ? 'O' : 'X';
+            document.getElementById('tttStatus').textContent = `Player ${tttPlayer}'s turn`;
+        }
+
+        function checkTTTWinner() {
+            const wins = [
+                [0,1,2], [3,4,5], [6,7,8],
+                [0,3,6], [1,4,7], [2,5,8],
+                [0,4,8], [2,4,6]
+            ];
+            
+            for (let win of wins) {
+                const [a, b, c] = win;
+                if (tttBoard[a] && tttBoard[a] === tttBoard[b] && tttBoard[a] === tttBoard[c]) {
+                    return tttBoard[a];
+                }
+            }
+            return null;
+        }
+
+        function tttReset() {
+            tttBoard = ['', '', '', '', '', '', '', '', ''];
+            tttPlayer = 'X';
+            document.querySelectorAll('.ttt-cell').forEach(cell => cell.textContent = '');
+            document.getElementById('tttStatus').textContent = "Player X's turn";
+            playSound();
+        }
+
+        // ============================================
+        // GAMES - MEMORY
+        // ============================================
+        function initMemoryGame() {
+            const emojis = ['🎮', '🎨', '🎭', '🎪', '🎯', '🎲', '🎸', '🎺'];
+            memoryCards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+            memoryFlipped = [];
+            memoryMatched = [];
+            memoryMoves = 0;
+        }
+
+        function renderMemoryBoard() {
+            const board = document.getElementById('memoryBoard');
+            board.innerHTML = memoryCards.map((emoji, index) => `
+                <div class="memory-card" onclick="flipMemoryCard(${index})">
+                    <div class="memory-card-front">❓</div>
+                    <div class="memory-card-back">${emoji}</div>
+                </div>
+            `).join('');
+        }
+
+        let memoryMoves = 0;
+
+        function flipMemoryCard(index) {
+            if (memoryFlipped.length >= 2 || memoryFlipped.includes(index) || memoryMatched.includes(index)) return;
+            
+            playSound(700);
+            const cards = document.querySelectorAll('.memory-card');
+            cards[index].classList.add('flipped');
+            memoryFlipped.push(index);
+            
+            if (memoryFlipped.length === 2) {
+                memoryMoves++;
+                document.getElementById('memoryMoves').textContent = memoryMoves;
+                
+                setTimeout(() => {
+                    const [first, second] = memoryFlipped;
+                    if (memoryCards[first] === memoryCards[second]) {
+                        cards[first].classList.add('matched');
+                        cards[second].classList.add('matched');
+                        memoryMatched.push(first, second);
+                        playSound(900);
+                        
+                        if (memoryMatched.length === memoryCards.length) {
+                            showToast(`🎉 You won in ${memoryMoves} moves!`);
+                            confetti();
+                            unlockBadge('gamer');
+                        }
+                    } else {
+                        cards[first].classList.remove('flipped');
+                        cards[second].classList.remove('flipped');
                     }
-                }, index * 200);
+                    memoryFlipped = [];
+                }, 800);
+            }
+        }
+
+        function resetMemoryGame() {
+            initMemoryGame();
+            renderMemoryBoard();
+            document.getElementById('memoryMoves').textContent = '0';
+            playSound();
+        }
+
+        // ============================================
+        // GAMES - SNAKE
+        // ============================================
+        function initSnakeGame() {
+            const canvas = document.getElementById('snakeCanvas');
+            if (!canvas) return;
+            
+            snakeGame = {
+                canvas: canvas,
+                ctx: canvas.getContext('2d'),
+                snake: [{x: 200, y: 200}],
+                dx: 20,
+                dy: 0,
+                food: {x: 0, y: 0},
+                score: 0,
+                gameInterval: null
+            };
+            
+            generateFood();
+        }
+
+        function generateFood() {
+            if (!snakeGame) return;
+            snakeGame.food = {
+                x: Math.floor(Math.random() * 20) * 20,
+                y: Math.floor(Math.random() * 20) * 20
+            };
+        }
+
+        function startSnakeGame() {
+            if (!snakeGame) return;
+            
+            if (snakeGame.gameInterval) clearInterval(snakeGame.gameInterval);
+            
+            snakeGame.snake = [{x: 200, y: 200}];
+            snakeGame.dx = 20;
+            snakeGame.dy = 0;
+            snakeGame.score = 0;
+            document.getElementById('snakeScore').textContent = '0';
+            generateFood();
+            
+            snakeGame.gameInterval = setInterval(updateSnakeGame, 100);
+            discoverFeature('snake-game');
+        }
+
+        function updateSnakeGame() {
+            if (!snakeGame) return;
+            
+            const head = {
+                x: snakeGame.snake[0].x + snakeGame.dx,
+                y: snakeGame.snake[0].y + snakeGame.dy
+            };
+            
+            // Check collision
+            if (head.x < 0 || head.x >= 400 || head.y < 0 || head.y >= 400 ||
+                snakeGame.snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+                clearInterval(snakeGame.gameInterval);
+                showToast(`Game Over! Score: ${snakeGame.score}`);
+                if (snakeGame.score > 5) unlockBadge('gamer');
+                return;
+            }
+            
+            snakeGame.snake.unshift(head);
+            
+            // Check food
+            if (head.x === snakeGame.food.x && head.y === snakeGame.food.y) {
+                snakeGame.score++;
+                document.getElementById('snakeScore').textContent = snakeGame.score;
+                generateFood();
+                playSound(800);
+            } else {
+                snakeGame.snake.pop();
+            }
+            
+            drawSnakeGame();
+        }
+
+        function drawSnakeGame() {
+            if (!snakeGame) return;
+            
+            snakeGame.ctx.fillStyle = '#1a1a1a';
+            snakeGame.ctx.fillRect(0, 0, 400, 400);
+            
+            // Draw food
+            snakeGame.ctx.fillStyle = '#ec4899';
+            snakeGame.ctx.fillRect(snakeGame.food.x, snakeGame.food.y, 20, 20);
+            
+            // Draw snake
+            snakeGame.ctx.fillStyle = '#10b981';
+            snakeGame.snake.forEach((segment, index) => {
+                snakeGame.ctx.fillStyle = index === 0 ? '#10b981' : '#059669';
+                snakeGame.ctx.fillRect(segment.x, segment.y, 20, 20);
             });
         }
 
-        const codeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    typeCode();
-                    codeObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
+        document.addEventListener('keydown', (e) => {
+            if (!snakeGame || !snakeGame.gameInterval) return;
+            
+            const key = e.key;
+            if (key === 'ArrowUp' && snakeGame.dy === 0) {
+                snakeGame.dx = 0;
+                snakeGame.dy = -20;
+            } else if (key === 'ArrowDown' && snakeGame.dy === 0) {
+                snakeGame.dx = 0;
+                snakeGame.dy = 20;
+            } else if (key === 'ArrowLeft' && snakeGame.dx === 0) {
+                snakeGame.dx = -20;
+                snakeGame.dy = 0;
+            } else if (key === 'ArrowRight' && snakeGame.dx === 0) {
+                snakeGame.dx = 20;
+                snakeGame.dy = 0;
+            }
+        });
 
-        codeObserver.observe(document.querySelector('.code-demo-section'));
-
-        // Code Playground
+        // ============================================
+        // CODE PLAYGROUND
+        // ============================================
         function runCode() {
             const htmlCode = document.getElementById('htmlInput').value;
             const output = document.getElementById('htmlOutput');
             output.innerHTML = htmlCode;
             playSound();
-            showToast('Code executed! ✨');
+            showToast('✨ Code executed successfully!');
+            discoverFeature('code-playground');
+        }
+
+        function clearCode() {
+            document.getElementById('htmlInput').value = '';
+            document.getElementById('htmlOutput').innerHTML = '';
+            playSound();
+        }
+
+        // ============================================
+        // DRAWING CANVAS
+        // ============================================
+        function initializeDrawingCanvas() {
+            const canvas = document.getElementById('drawingCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.addEventListener('mousedown', () => {
+                isDrawing = true;
+                discoverFeature('drawing-canvas');
+            });
+            canvas.addEventListener('mouseup', () => isDrawing = false);
+            canvas.addEventListener('mouseleave', () => isDrawing = false);
+            
+            canvas.addEventListener('mousemove', (e) => {
+                if (!isDrawing) return;
+                
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                ctx.fillStyle = drawColor;
+                ctx.beginPath();
+                ctx.arc(x, y, brushSize, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        function setDrawColor(color) {
+            drawColor = color;
+            playSound(500);
+            showToast(`🎨 Color changed to ${color}`);
+        }
+
+        function changeBrushSize(size) {
+            brushSize = size;
+            playSound(600);
+            showToast(`🖌️ Brush size: ${size}`);
+        }
+
+        function clearCanvas() {
+            const canvas = document.getElementById('drawingCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            playSound();
+            showToast('🗑️ Canvas cleared!');
+        }
+
+        function saveDrawing() {
+            const canvas = document.getElementById('drawingCanvas');
+            const dataURL = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = 'my-drawing.png';
+            link.href = dataURL;
+            link.click();
+            playSound(1000);
+            showToast('💾 Drawing saved!');
+            unlockBadge('artist');
             updateEasterEggCounter();
         }
 
-        // Initialize playground
-        setTimeout(() => {
-            runCode();
-        }, 100);
-
-        // Typing Speed Game
-        let typingStartTime = null;
-        let typingErrors = 0;
-        let typingTimeLeft = 60;
-
-        const typingTexts = [
-            "The quick brown fox jumps over the lazy dog while learning to code with JavaScript and React.",
-            "Web development is an exciting journey filled with creativity, problem-solving, and endless learning opportunities.",
-            "HTML structures content, CSS makes it beautiful, and JavaScript brings it to life with interactivity.",
-            "Every great developer was once a beginner who decided never to give up on their coding dreams."
-        ];
-
-        document.getElementById('typingInput').addEventListener('input', function(e) {
-            if (!typingGameActive) {
-                startTypingGame();
-            }
-            
-            const typed = e.target.value;
-            const original = document.getElementById('typingText').textContent;
-            
-            // Calculate errors
-            typingErrors = 0;
-            for (let i = 0; i < typed.length; i++) {
-                if (typed[i] !== original[i]) {
-                    typingErrors++;
-                }
-            }
-            
-            // Calculate WPM
-            const timeElapsed = (Date.now() - typingStartTime) / 1000 / 60;
-            const wordsTyped = typed.trim().split(/\s+/).length;
-            const wpm = Math.round(wordsTyped / timeElapsed) || 0;
-            
-            // Calculate accuracy
-            const accuracy = typed.length > 0 ? Math.round(((typed.length - typingErrors) / typed.length) * 100) : 100;
-            
-            document.getElementById('wpm').textContent = wpm;
-            document.getElementById('accuracy').textContent = accuracy;
-            
-            // Check if completed
-            if (typed === original) {
-                endTypingGame(true);
-            }
-        });
-
-        function startTypingGame() {
-            typingGameActive = true;
-            typingStartTime = Date.now();
-            typingTimeLeft = 60;
-            
-            typingGameTimer = setInterval(() => {
-                typingTimeLeft--;
-                document.getElementById('timer').textContent = typingTimeLeft;
-                
-                if (typingTimeLeft <= 0) {
-                    endTypingGame(false);
-                }
-            }, 1000);
-        }
-
-        function endTypingGame(completed) {
-            clearInterval(typingGameTimer);
-            typingGameActive = false;
-            
-            const wpm = parseInt(document.getElementById('wpm').textContent);
-            
-            if (completed) {
-                showToast(`🎉 Completed! Your speed: ${wpm} WPM`);
-                confetti();
-                updateEasterEggCounter();
-                
-                if (wpm > 60) {
-                    unlockBadge('secret3');
-                }
-            } else {
-                showToast('⏰ Time\'s up! Try again!');
-            }
-        }
-
-        function resetTypingGame() {
-            clearInterval(typingGameTimer);
-            typingGameActive = false;
-            typingStartTime = null;
-            typingErrors = 0;
-            typingTimeLeft = 60;
-            
-            document.getElementById('typingInput').value = '';
-            document.getElementById('wpm').textContent = '0';
-            document.getElementById('accuracy').textContent = '100';
-            document.getElementById('timer').textContent = '60';
-            
-            // Random text
-            const randomText = typingTexts[Math.floor(Math.random() * typingTexts.length)];
-            document.getElementById('typingText').textContent = randomText;
-            
-            playSound();
-            showToast('Game reset! Start typing to begin again.');
-        }
-
-        // Quiz Game
+        // ============================================
+        // QUIZ
+        // ============================================
         const quizQuestions = [
             {
                 question: "What does HTML stand for?",
-                options: ["Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language"],
+                options: ["Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Markup Language", "Hyperlinks Text Markup Language"],
                 correct: 0
             },
             {
-                question: "Which CSS property is used to change text color?",
+                question: "Which CSS property controls text color?",
                 options: ["text-color", "font-color", "color", "text-style"],
                 correct: 2
             },
             {
-                question: "What is the correct way to declare a JavaScript variable?",
-                options: ["var myVar;", "variable myVar;", "v myVar;", "declare myVar;"],
+                question: "What is the correct JavaScript syntax for a function?",
+                options: ["function myFunction()", "def myFunction()", "func myFunction()", "function:myFunction()"],
                 correct: 0
             },
             {
@@ -1932,6 +2744,21 @@
                 question: "What does DOM stand for?",
                 options: ["Document Object Model", "Data Object Model", "Document Oriented Model", "Dynamic Object Model"],
                 correct: 0
+            },
+            {
+                question: "Which company developed JavaScript?",
+                options: ["Microsoft", "Netscape", "Google", "Apple"],
+                correct: 1
+            },
+            {
+                question: "What is the default port for HTTP?",
+                options: ["21", "80", "443", "8080"],
+                correct: 1
+            },
+            {
+                question: "Which is NOT a JavaScript framework?",
+                options: ["React", "Angular", "Django", "Vue"],
+                correct: 2
             }
         ];
 
@@ -1942,14 +2769,14 @@
             }
             
             const question = quizQuestions[currentQuizQuestion];
-            document.getElementById('quizQuestion').textContent = `Question ${currentQuizQuestion + 1}/${quizQuestions.length}: ${question.question}`;
+            document.getElementById('quizQuestion').textContent = 
+                `Question ${currentQuizQuestion + 1}/${quizQuestions.length}: ${question.question}`;
             
             const optionsHtml = question.options.map((option, index) => 
                 `<div class="quiz-option" onclick="selectAnswer(${index})">${option}</div>`
             ).join('');
             
             document.getElementById('quizOptions').innerHTML = optionsHtml;
-            document.getElementById('quizScore').textContent = '';
         }
 
         function selectAnswer(selected) {
@@ -1961,16 +2788,19 @@
             
             if (selected === question.correct) {
                 quizScore++;
-                playSound();
-                showToast('Correct! 🎉');
+                document.getElementById('quizScore').textContent = quizScore;
+                playSound(900);
+                showToast('✅ Correct!');
             } else {
-                showToast('Wrong! The correct answer is highlighted.');
+                showToast('❌ Wrong answer!');
             }
             
             setTimeout(() => {
                 currentQuizQuestion++;
                 loadQuizQuestion();
-            }, 2000);
+            }, 1500);
+            
+            discoverFeature('quiz');
         }
 
         function endQuiz() {
@@ -1978,7 +2808,8 @@
             document.getElementById('quizQuestion').textContent = `Quiz Complete! 🎉`;
             document.getElementById('quizOptions').innerHTML = `
                 <div style="text-align: center; padding: 40px;">
-                    <h3 style="font-size: 2rem; margin-bottom: 20px;">Your Score: ${quizScore}/${quizQuestions.length}</h3>
+                    <h3 style="font-size: 2.5rem; margin-bottom: 20px;">Your Score</h3>
+                    <p style="font-size: 3rem; color: var(--accent); margin-bottom: 20px;">${quizScore}/${quizQuestions.length}</p>
                     <p style="font-size: 1.5rem; margin-bottom: 30px;">${percentage}% Correct</p>
                     <button class="playground-btn" onclick="resetQuiz()">🔄 Retake Quiz</button>
                 </div>
@@ -1987,76 +2818,87 @@
             confetti();
             updateEasterEggCounter(2);
             
-            if (percentage >= 80) {
-                unlockBadge('secret2');
+            if (percentage >= 75) {
+                unlockBadge('quiz');
+                showToast('🏆 Achievement Unlocked: Quiz Champion!');
             }
         }
 
         function resetQuiz() {
             currentQuizQuestion = 0;
             quizScore = 0;
+            document.getElementById('quizScore').textContent = '0';
             loadQuizQuestion();
             playSound();
         }
 
-        // Terminal Simulator
-        const terminalCommands = {
-            help: "Available commands:\n  help - Show this help message\n  about - About this portfolio\n  skills - List my skills\n  projects - List my projects\n  contact - Contact information\n  clear - Clear terminal\n  matrix - Enter the Matrix\n  joke - Tell a developer joke\n  credits - Show credits",
-            about: "I'm a passionate web developer with expertise in full-stack development. I love creating beautiful and functional web applications!",
-            skills: "My skills include:\n  • HTML5 & CSS3\n  • JavaScript (ES6+)\n  • React & Vue.js\n  • Node.js & Express\n  • MongoDB & PostgreSQL\n  • Git & GitHub",
-            projects: "Check out my projects section above! I've built e-commerce platforms, social media dashboards, task managers, and more!",
-            contact: "📧 Email: dev@webjourney.com\n💻 GitHub: github.com/webdev\n🔗 LinkedIn: linkedin.com/in/webdev",
-            clear: "CLEAR",
-            matrix: "MATRIX",
-            joke: "Why do programmers prefer dark mode?\n\nBecause light attracts bugs! 🐛😄",
-            credits: "Created with ❤️ by a passionate web developer\nPowered by: HTML, CSS, JavaScript, and lots of coffee ☕"
+        // ============================================
+        // CHATBOT
+        // ============================================
+        const chatResponses = {
+            'hello': 'Hi there! 👋 How can I help you today?',
+            'hi': 'Hello! 😊 What would you like to know?',
+            'skills': 'I have expertise in HTML, CSS, JavaScript, React, Node.js, databases, and much more! Check out my skills section above.',
+            'projects': 'I\'ve built amazing projects including e-commerce platforms, social dashboards, task managers, and this interactive portfolio!',
+            'contact': '📧 You can reach me at dev@portfolio.com or connect on GitHub and LinkedIn!',
+            'games': '🎮 Try out the games section! I have Calculator, Tic Tac Toe, Memory Game, Snake, and more!',
+            'help': 'You can ask me about my skills, projects, experience, or just chat! Try: "tell me about your projects"',
+            'experience': 'I\'ve completed extensive web development training covering frontend, backend, databases, and full-stack development!',
+            'technologies': 'I work with HTML5, CSS3, JavaScript (ES6+), React, Vue, Node.js, Express, MongoDB, PostgreSQL, Git, and more!',
+            'fun': '🎉 This portfolio has 30 Easter eggs hidden throughout! Have you found them all?',
+            'easter': '🥚 There are 30 Easter eggs to find! Try the Konami code, explore the games, use the terminal, and look carefully!',
+            'joke': 'Why do programmers prefer dark mode? Because light attracts bugs! 🐛😄',
+            'coffee': '☕ I run on coffee! Fun fact: I\'ve consumed 999+ cups while building this portfolio!',
+            'default': 'That\'s interesting! Feel free to ask me about my skills, projects, or experience. Or try asking for a joke! 😊'
         };
 
-        document.getElementById('terminalInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const command = this.value.trim().toLowerCase();
-                const terminalBody = document.getElementById('terminalBody');
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim().toLowerCase();
+            
+            if (!message) return;
+            
+            const messagesDiv = document.getElementById('chatMessages');
+            
+            // User message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-message user';
+            userMsg.textContent = input.value;
+            messagesDiv.appendChild(userMsg);
+            
+            input.value = '';
+            
+            // Bot response
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'chat-message bot';
                 
-                // Display command
-                const commandLine = document.createElement('div');
-                commandLine.className = 'terminal-line';
-                commandLine.innerHTML = `<span class="terminal-prompt">$ </span>${command}`;
-                terminalBody.insertBefore(commandLine, terminalBody.lastElementChild);
-                
-                // Execute command
-                if (terminalCommands[command]) {
-                    if (command === 'clear') {
-                        terminalBody.innerHTML = '<div class="terminal-line"><span class="terminal-prompt">$ </span><input type="text" class="terminal-input" id="terminalInput" autofocus></div>';
-                        document.getElementById('terminalInput').focus();
-                    } else if (command === 'matrix') {
-                        startMatrixRain();
-                        setTheme('matrix');
-                        const outputLine = document.createElement('div');
-                        outputLine.className = 'terminal-line';
-                        outputLine.textContent = 'Welcome to the Matrix... 🟩';
-                        terminalBody.insertBefore(outputLine, terminalBody.lastElementChild);
-                    } else {
-                        const outputLine = document.createElement('div');
-                        outputLine.className = 'terminal-line';
-                        outputLine.style.whiteSpace = 'pre-line';
-                        outputLine.textContent = terminalCommands[command];
-                        terminalBody.insertBefore(outputLine, terminalBody.lastElementChild);
+                let response = chatResponses.default;
+                for (let key in chatResponses) {
+                    if (message.includes(key)) {
+                        response = chatResponses[key];
+                        break;
                     }
-                    playSound();
-                    updateEasterEggCounter();
-                } else if (command) {
-                    const errorLine = document.createElement('div');
-                    errorLine.className = 'terminal-line';
-                    errorLine.textContent = `Command not found: ${command}. Type 'help' for available commands.`;
-                    terminalBody.insertBefore(errorLine, terminalBody.lastElementChild);
                 }
                 
-                this.value = '';
-                terminalBody.scrollTop = terminalBody.scrollHeight;
-            }
+                botMsg.textContent = response;
+                messagesDiv.appendChild(botMsg);
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                
+                playSound(700);
+            }, 500);
+            
+            discoverFeature('chatbot');
+            updateEasterEggCounter();
+        }
+
+        document.getElementById('chatInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
         });
 
-        // Matrix Rain Effect
+        // ============================================
+        // MATRIX EFFECT
+        // ============================================
         let matrixInterval = null;
 
         function startMatrixRain() {
@@ -2067,7 +2909,7 @@
             canvas.height = window.innerHeight;
             canvas.classList.add('active');
             
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()<>[]{}';
             const fontSize = 14;
             const columns = canvas.width / fontSize;
             const drops = Array(Math.floor(columns)).fill(1);
@@ -2101,10 +2943,12 @@
             document.getElementById('matrixCanvas').classList.remove('active');
         }
 
-        // Modal functions
+        // ============================================
+        // MODAL
+        // ============================================
         function showModal(title, content) {
             document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalContent').textContent = content;
+            document.getElementById('modalContent').innerHTML = content;
             document.getElementById('modal').style.display = 'flex';
             playSound();
             updateEasterEggCounter();
@@ -2118,7 +2962,117 @@
             if (e.target.id === 'modal') closeModal();
         });
 
-        // Konami Code Easter Egg
+        // ============================================
+        // TOAST
+        // ============================================
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // ============================================
+        // CONFETTI
+        // ============================================
+        function confetti() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.style.position = 'fixed';
+                    particle.style.left = Math.random() * window.innerWidth + 'px';
+                    particle.style.top = '-10px';
+                    particle.style.width = '10px';
+                    particle.style.height = '10px';
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.zIndex = '9999';
+                    particle.style.pointerEvents = 'none';
+                    particle.style.borderRadius = '50%';
+                    document.body.appendChild(particle);
+                    
+                    let pos = -10;
+                    let rotation = 0;
+                    const fall = setInterval(() => {
+                        if (pos > window.innerHeight) {
+                            clearInterval(fall);
+                            particle.remove();
+                        } else {
+                            pos += 5;
+                            rotation += 10;
+                            particle.style.top = pos + 'px';
+                            particle.style.transform = `rotate(${rotation}deg)`;
+                        }
+                    }, 20);
+                }, i * 15);
+            }
+        }
+
+        // ============================================
+        // ACHIEVEMENTS
+        // ============================================
+        function unlockBadge(badgeId) {
+            const badge = document.querySelector(`[data-badge="${badgeId}"]`);
+            if (badge && badge.classList.contains('locked')) {
+                badge.classList.remove('locked');
+                confetti();
+                showToast(`🏆 Achievement Unlocked: ${badge.querySelector('.badge-tooltip').textContent}!`);
+                playSound(1000);
+                updateEasterEggCounter(2);
+            }
+        }
+
+        function unlockAllBadges() {
+            document.querySelectorAll('.badge.locked').forEach(badge => {
+                badge.classList.remove('locked');
+            });
+            confetti();
+            showToast('🎉 All achievements unlocked!');
+        }
+
+        // ============================================
+        // PROGRESS TRACKING
+        // ============================================
+        function discoverFeature(featureName) {
+            if (!featuresDiscovered.has(featureName)) {
+                featuresDiscovered.add(featureName);
+                document.getElementById('featureCounter').textContent = featuresDiscovered.size;
+                
+                if (featuresDiscovered.size >= 15) {
+                    unlockBadge('explorer');
+                }
+                if (featuresDiscovered.size >= 20) {
+                    unlockBadge('coder');
+                }
+                if (featuresDiscovered.size >= 25) {
+                    unlockBadge('ultimate');
+                }
+            }
+        }
+
+        // ============================================
+        // EASTER EGGS
+        // ============================================
+        function updateEasterEggCounter(points = 1) {
+            easterEggCount = Math.min(easterEggCount + points, 30);
+            document.getElementById('eggCounter').textContent = easterEggCount;
+            
+            if (easterEggCount >= 30) {
+                setTimeout(() => {
+                    showModal('🏆 ULTIMATE MASTER', 
+                        '<h2 style="text-align: center; color: var(--accent); margin: 20px 0;">🎉 CONGRATULATIONS! 🎉</h2>' +
+                        '<p style="font-size: 1.2rem; text-align: center;">You have found all 30 Easter eggs and become the ULTIMATE MASTER of this portfolio!</p>' +
+                        '<p style="text-align: center; margin-top: 20px;">You have truly explored every corner of this interactive experience. You are a legend! 🌟</p>'
+                    );
+                    confetti();
+                    unlockBadge('ultimate');
+                }, 500);
+            }
+        }
+
+        // Konami Code
         let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
         let konamiIndex = 0;
 
@@ -2126,146 +3080,66 @@
             if (e.key === konamiCode[konamiIndex]) {
                 konamiIndex++;
                 if (konamiIndex === konamiCode.length) {
-                    document.getElementById('secretUnlock').style.display = 'block';
                     confetti();
-                    unlockBadge('secret1');
-                    showToast('🎉 Konami Code Unlocked! You are a true gamer!');
+                    unlockBadge('konami');
+                    showToast('🎮 Konami Code Activated! You are a true gamer!');
                     konamiIndex = 0;
                     updateEasterEggCounter(3);
+                    setTheme('neon');
                 }
             } else {
                 konamiIndex = 0;
             }
         });
 
-        // Confetti effect
-        function confetti() {
-            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-            for (let i = 0; i < 150; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.style.position = 'fixed';
-                    confetti.style.left = Math.random() * window.innerWidth + 'px';
-                    confetti.style.top = '-10px';
-                    confetti.style.width = '10px';
-                    confetti.style.height = '10px';
-                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.zIndex = '9999';
-                    confetti.style.pointerEvents = 'none';
-                    confetti.style.borderRadius = '50%';
-                    document.body.appendChild(confetti);
-                    
-                    let pos = -10;
-                    let rotation = 0;
-                    const fall = setInterval(() => {
-                        if (pos > window.innerHeight) {
-                            clearInterval(fall);
-                            confetti.remove();
-                        } else {
-                            pos += 5;
-                            rotation += 10;
-                            confetti.style.top = pos + 'px';
-                            confetti.style.transform = `rotate(${rotation}deg)`;
-                        }
-                    }, 20);
-                }, i * 15);
+        // Double click Easter egg
+        let doubleClickCount = 0;
+        document.body.addEventListener('dblclick', (e) => {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'CANVAS') {
+                doubleClickCount++;
+                const colors = ['linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                               'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                               'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                               'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'];
+                document.body.style.background = colors[doubleClickCount % colors.length];
+                
+                if (doubleClickCount === 5) {
+                    updateEasterEggCounter();
+                    showToast('🎨 You found the rainbow Easter egg!');
+                }
             }
-        }
+        });
 
-        // Easter egg counter
-        function updateEasterEggCounter(points = 1) {
-            easterEggCount = Math.min(easterEggCount + points, 20);
-            document.getElementById('eggCounter').textContent = easterEggCount;
-            
-            if (easterEggCount >= 20) {
-                setTimeout(() => {
-                    showModal('🏆 ULTIMATE ACHIEVEMENT', 'Congratulations! You found all 20 Easter eggs! You are a true explorer and have mastered this interactive portfolio. You have unlocked the ultimate achievement: Master Explorer! 🎉🌟');
-                    confetti();
-                }, 500);
-            }
-        }
-
-        // Badge System
-        function unlockBadge(badgeId) {
-            const badge = document.querySelector(`[data-badge="${badgeId}"]`);
-            if (badge && badge.classList.contains('locked')) {
-                badge.classList.remove('locked');
-                badge.style.animation = 'none';
-                setTimeout(() => {
-                    badge.style.animation = 'pulse 0.5s ease';
-                }, 10);
-                showToast('🏆 New badge unlocked!');
-                confetti();
-            }
-        }
-
-        // Secret click patterns
-        let clickCount = 0;
+        // Secret click on title
+        let titleClicks = 0;
         document.querySelectorAll('.section-title').forEach(title => {
             title.addEventListener('click', function() {
-                clickCount++;
-                if (clickCount === 3) {
+                titleClicks++;
+                if (titleClicks === 5) {
                     showToast('🎊 You found a secret click pattern!');
                     updateEasterEggCounter();
-                    clickCount = 0;
+                    titleClicks = 0;
                 }
             });
         });
 
-        // Initialize everything
-        createStars();
-        createParticles();
-        loadQuizQuestion();
-        
-        // Scroll to bottom Easter egg
-        let bottomReached = false;
+        // Scroll Easter egg
+        let scrollThreshold = false;
         window.addEventListener('scroll', () => {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
-                if (!bottomReached) {
-                    bottomReached = true;
+                if (!scrollThreshold) {
+                    scrollThreshold = true;
                     updateEasterEggCounter();
-                    showToast('🎉 You scrolled all the way down! Here\'s an Easter egg!');
+                    showToast('🎉 You reached the bottom! Here\'s an Easter egg!');
                 }
             }
         });
 
-        // Console Easter egg
-        console.log('%c🎉 Hey there, fellow developer! 🎉', 'font-size: 20px; color: #10b981; font-weight: bold;');
-        console.log('%cYou found the console Easter egg! 🥚', 'font-size: 16px; color: #6366f1;');
-        console.log('%cFeel free to explore the code and learn from it!', 'font-size: 14px; color: #ec4899;');
-        console.log('%cTry these commands:', 'font-size: 14px; color: #f59e0b;');
-        console.log('%c  setTheme("matrix") - Enter the Matrix!', 'font-size: 12px;');
-        console.log('%c  confetti() - Make it rain confetti!', 'font-size: 12px;');
-        console.log('%c  showToast("Your message") - Show a toast notification!', 'font-size: 12px;');
-        updateEasterEggCounter();
-
-        // Double click Easter egg
-        let doubleClickTimer = null;
-        document.body.addEventListener('dblclick', (e) => {
-            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-                const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                document.body.style.background = `linear-gradient(135deg, ${randomColor} 0%, ${colors[(colors.indexOf(randomColor) + 1) % colors.length]} 100%)`;
-                
-                setTimeout(() => {
-                    if (document.body.getAttribute('data-theme') === 'matrix') {
-                        document.body.style.background = 'linear-gradient(135deg, #001100 0%, #000000 100%)';
-                    } else if (document.body.getAttribute('data-theme') === 'dark') {
-                        document.body.style.background = 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)';
-                    } else {
-                        document.body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                    }
-                }, 1000);
-                
-                updateEasterEggCounter();
-                showToast('🎨 You found the color changing Easter egg!');
-            }
-        });
-
-        // Make confetti and showToast available globally for console
+        // Make functions available globally
         window.confetti = confetti;
         window.showToast = showToast;
         window.setTheme = setTheme;
+        window.unlockAllBadges = unlockAllBadges;
     </script>
 </body>
 </html>
